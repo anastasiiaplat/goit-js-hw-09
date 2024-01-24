@@ -1,6 +1,6 @@
 import SimpleLightbox from 'simplelightbox';
 
-import "simplelightbox/dist/simple-lightbox.min.css";т
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 
 const images = [
@@ -96,12 +96,12 @@ function render() {
     const markup = imagesListTemplate(images);
     container.innerHTML = markup;
 
-    const galleryLinks = document.querySelectorAll(".gallery-link");
-    galleryLinks.forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-        });
-    });
+    // const galleryLinks = document.querySelectorAll(".gallery-link");
+    // galleryLinks.forEach(link => {
+    //     link.addEventListener("click", function (e) {
+    //         e.preventDefault();
+    //     });
+    // });
 }
 
 render();
