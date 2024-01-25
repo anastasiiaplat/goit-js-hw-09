@@ -72,63 +72,29 @@ const images = [
 const container = document.querySelector('.gallery');
 
 function imagesTemplate(item) {
-    return `<li class="gallery-item">
-  <a class="gallery-link" href="${item.original}">
-    <img class="gallery-image" src="${item.preview}" alt="${item.description}" />
-  </a>
-</li>`;
+  return `
+    <li class="gallery-item">
+      <a class="gallery-link" href="${item.original}">
+        <img class="gallery-image" src="${item.preview}" alt="${item.description}" />
+      </a>
+    </li>`;
 }
 
-
-
-
-
-
-
-
-
 function imagesListTemplate(images) {
-    const markup = images.map(imagesTemplate).join('');
-    return markup;
+  const markup = images.map(imagesTemplate).join('');
+  return markup;
 }
 
 function render() {
-    const markup = imagesListTemplate(images);
-    container.innerHTML = markup;
-
-    // const galleryLinks = document.querySelectorAll(".gallery-link");
-    // galleryLinks.forEach(link => {
-    //     link.addEventListener("click", function (e) {
-    //         e.preventDefault();
-    //     });
-    // });
+  const markup = imagesListTemplate(images);
+  container.innerHTML = markup;
 }
 
 render();
 
-container.addEventListener('click', e => {
-    if (e.target === e.currentTarget) return;
-
-    const previewLink = e.target.getAttribute('data-source') || e.target.parentNode.getAttribute('data-source');
-    if (!previewLink) return;
-
-    const instance = basicLightbox.create(`
-        <img src="${previewLink}" width="1112" height="640">`, 
-        {
-            onShow: (instance) => {
-                window.addEventListener('keydown', closeModal);
-            },
-        
-            onClose: (instance) => {
-                window.removeEventListener('keydown', closeModal);
-            },
-        });
-
-    function closeModal(e) {
-        if(e.code === 'Escape') {
-            instance.close();
-        }
-    }
-
-    instance.show();
+const gallery = new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionDelay: 250, 
+  captionsData: 'alt',
+  captionPosition: 'bottom'
 });

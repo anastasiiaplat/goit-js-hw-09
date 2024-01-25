@@ -23,3 +23,83 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.gallery {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  row-gap: 24px;
+}
+
+.gallery-link {
+  display: block;
+}
+
+.gallery-image {
+  width: 360px;
+  height: 200px;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-image:hover {
+  transform: scale(1.045);
+}
+
+
+/* =========== */
+
+.modal {
+  max-width: 100%;
+}
+
+.feedback-form {
+  width: 480px;
+}
+
+.feedback-form>label {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  font: inherit;
+  padding: 8px;
+  
+}
+
+.feedback-form textarea {
+  resize: none;
+}
+
+.feedback-form>button {
+  cursor: pointer;
+  width: 95px;
+  height: 40px;
+  background-color: #4E75FF;
+  border-radius: 8px;
+  font-size: 16px;
+    color: white;
+}
+
+.feedback-form>button:hover,
+.feedback-form>button:focus {
+  background-color: #6C8CFF;
+}
