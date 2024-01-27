@@ -1,28 +1,33 @@
-const storage_key = 'feedback-msg'; 
+const storageKey = 'feedback-msg';
 const form = document.querySelector('.feedback-form');
-const textarea = form.querySelector('textatea');
+const textarea = form.querySelector('textarea');
 
+form.addEventListener('input', (e) => {
+  const userName = e.currentTarget.elements.email.value.trim();
+  const userMessage = e.currentTarget.elements.message.value.trim();
 
-form.addEventListener('input', e => {
-  const userName = e.currentTarget.elements.email.value;
-    const userMessage = e.currentTarget.elements.message.value;
- 
-    const data = {
+  const data = {
     name: userName,
     message: userMessage,
   };
-saveToLS(storage_key, data);
+  saveToLS(storageKey, data);
 });
 
-
-form.addEventListener('submit', e => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const data = loadFromLS(storage_key) || {};
-  console.log(data);
+  const userName = form.elements.email.value.trim();
+  const userMessage = form.elements.message.value.trim();
 
-  localStorage.removeItem(storage_key);
-  form.reset();
+  if (userName && userMessage) {
+    const data = loadFromLS(storageKey) || {};
+    console.log(data);
+
+    localStorage.removeItem(storageKey);
+    form.reset();
+  } else {
+    console.log('Please complete both fields of the form before submitting.');
+  }
 });
 
 function loadFromLS(key = 'empty') {
@@ -42,11 +47,10 @@ function saveToLS(key, value) {
 }
 
 function restoreData() {
-  const data = loadFromLS(storage_key) || {};
+  const data = loadFromLS(storageKey) || {};
 
   form.elements.email.value = data.name || '';
   form.elements.message.value = data.message || '';
 }
-restoreData();
- 
 
+restoreData();
